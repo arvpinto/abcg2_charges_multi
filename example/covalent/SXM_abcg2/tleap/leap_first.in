@@ -1,0 +1,20 @@
+source leaprc.protein.ff14SB
+source leaprc.gaff2
+loadamberparams ../SXM.frcmod
+SXM = loadmol2 ../SXM_abcg2_residue.mol2
+set SXM head SXM.1.N
+set SXM tail SXM.1.C
+set SXM.1 connect0 SXM.1.N
+set SXM.1 connect1 SXM.1.C
+set SXM.1 restype protein
+set SXM.1 name "SXM"
+pep = sequence { ACE SXM NME }
+charge SXM
+check SXM
+saveoff SXM SXM.lib
+savemol2 pep SXM_pep_types.mol2 1
+charge pep
+check pep
+saveamberparm pep SXM_pep.prmtop SXM_pep.inpcrd
+savepdb pep SXM_pep.pdb
+quit

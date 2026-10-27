@@ -1,0 +1,276 @@
+-I: Adding /opt/abcg2/dat/leap/prep to search path.
+-I: Adding /opt/abcg2/dat/leap/lib to search path.
+-I: Adding /opt/abcg2/dat/leap/parm to search path.
+-I: Adding /opt/abcg2/dat/leap/cmd to search path.
+-f: Source leap_first.in.
+
+Welcome to LEaP!
+(no leaprc in search path)
+Sourcing: ./leap_first.in
+----- Source: /opt/abcg2/dat/leap/cmd/leaprc.protein.ff14SB
+----- Source of /opt/abcg2/dat/leap/cmd/leaprc.protein.ff14SB done
+Log file: ./leap.log
+Loading parameters: /opt/abcg2/dat/leap/parm/parm10.dat
+Reading title:
+PARM99 + frcmod.ff99SB + frcmod.parmbsc0 + OL3 for RNA
+Loading parameters: /opt/abcg2/dat/leap/parm/frcmod.ff14SB
+Reading force field modification type file (frcmod)
+Reading title:
+ff14SB protein backbone and sidechain parameters
+Loading library: /opt/abcg2/dat/leap/lib/amino12.lib
+Loading library: /opt/abcg2/dat/leap/lib/aminoct12.lib
+Loading library: /opt/abcg2/dat/leap/lib/aminont12.lib
+----- Source: /opt/abcg2/dat/leap/cmd/leaprc.gaff2
+----- Source of /opt/abcg2/dat/leap/cmd/leaprc.gaff2 done
+Log file: ./leap.log
+Loading parameters: /opt/abcg2/dat/leap/parm/gaff2.dat
+Reading title:
+AMBER General Force Field for organic molecules (Version 2.2.30, Oct 2025)
+Loading parameters: ../SXM.frcmod
+Reading force field modification type file (frcmod)
+Reading title:
+Remark line goes here
+Loading Mol2 file: ../SXM_abcg2_residue.mol2
+Reading MOLECULE named SXM abcg2, caps removed
+Total unperturbed charge:  -1.000000
+Total perturbed charge:    -1.000000
+Checking 'SXM'....
+
+/opt/abcg2/bin/teLeap: Warning!
+The unperturbed charge of the unit (-1.000000) is not zero.
+Checking parameters for unit 'SXM'.
+Checking for bond parameters.
+
+/opt/abcg2/bin/teLeap: Error!
+Could not find bond parameter for atom types: CX - c3
+        for atom CA at position 2.805000, 0.207000, -0.213000 
+        and atom CB at position 1.915000, -0.804000, 0.551000.
+Checking for angle parameters.
+
+/opt/abcg2/bin/teLeap: Error!
+Could not find angle parameter for atom types: N - CX - c3
+        for atom N at position 4.204000, -0.110000, -0.056000,
+            atom CA at position 2.805000, 0.207000, -0.213000,
+        and atom CB at position 1.915000, -0.804000, 0.551000.
+
+/opt/abcg2/bin/teLeap: Error!
+Could not find angle parameter for atom types: CX - c3 - h1
+        for atom CA at position 2.805000, 0.207000, -0.213000,
+            atom CB at position 1.915000, -0.804000, 0.551000,
+        and atom HB2 at position 1.961000, -0.643000, 1.659000.
+
+/opt/abcg2/bin/teLeap: Error!
+Could not find angle parameter for atom types: CX - c3 - h1
+        for atom CA at position 2.805000, 0.207000, -0.213000,
+            atom CB at position 1.915000, -0.804000, 0.551000,
+        and atom HB3 at position 2.215000, -1.857000, 0.307000.
+
+/opt/abcg2/bin/teLeap: Error!
+Could not find angle parameter for atom types: CX - c3 - os
+        for atom CA at position 2.805000, 0.207000, -0.213000,
+            atom CB at position 1.915000, -0.804000, 0.551000,
+        and atom OG at position 0.582000, -0.591000, 0.081000.
+
+/opt/abcg2/bin/teLeap: Error!
+Could not find angle parameter for atom types: H1 - CX - c3
+        for atom HA at position 2.539000, 0.181000, -1.263000,
+            atom CA at position 2.805000, 0.207000, -0.213000,
+        and atom CB at position 1.915000, -0.804000, 0.551000.
+
+/opt/abcg2/bin/teLeap: Error!
+Could not find angle parameter for atom types: c3 - CX - C
+        for atom CB at position 1.915000, -0.804000, 0.551000,
+            atom CA at position 2.805000, 0.207000, -0.213000,
+        and atom C at position 2.604000, 1.635000, 0.314000.
+
+/opt/abcg2/bin/teLeap: Warning!
+There are missing parameters.
+check:  Warnings: 1
+Unit is OK.
+ Creating SXM.lib
+Building topology.
+Building atom parameters.
+Writing mol2 file: SXM_pep_types.mol2
+Total unperturbed charge:  -1.000000
+Total perturbed charge:    -1.000000
+Checking 'pep'....
+
+/opt/abcg2/bin/teLeap: Warning!
+The unperturbed charge of the unit (-1.000000) is not zero.
+Checking parameters for unit 'pep'.
+Checking for bond parameters.
+
+/opt/abcg2/bin/teLeap: Error!
+Could not find bond parameter for atom types: CX - c3
+        for atom CA at position 4.847915, 4.611271, -0.000004 
+        and atom CB at position 5.604581, 4.341102, -1.323780.
+Checking for angle parameters.
+
+/opt/abcg2/bin/teLeap: Error!
+Could not find angle parameter for atom types: c3 - CX - C
+        for atom CB at position 5.604581, 4.341102, -1.323780,
+            atom CA at position 4.847915, 4.611271, -0.000004,
+        and atom C at position 4.606054, 6.113327, 0.206505.
+
+/opt/abcg2/bin/teLeap: Error!
+Could not find angle parameter for atom types: H1 - CX - c3
+        for atom HA at position 5.443125, 4.236300, 0.824043,
+            atom CA at position 4.847915, 4.611271, -0.000004,
+        and atom CB at position 5.604581, 4.341102, -1.323780.
+
+/opt/abcg2/bin/teLeap: Error!
+Could not find angle parameter for atom types: CX - c3 - h1
+        for atom CA at position 4.847915, 4.611271, -0.000004,
+            atom CB at position 5.604581, 4.341102, -1.323780,
+        and atom HB2 at position 5.170304, 4.924071, -2.176571.
+
+/opt/abcg2/bin/teLeap: Error!
+Could not find angle parameter for atom types: CX - c3 - h1
+        for atom CA at position 4.847915, 4.611271, -0.000004,
+            atom CB at position 5.604581, 4.341102, -1.323780,
+        and atom HB3 at position 5.594767, 3.246208, -1.567618.
+
+/opt/abcg2/bin/teLeap: Error!
+Could not find angle parameter for atom types: CX - c3 - os
+        for atom CA at position 4.847915, 4.611271, -0.000004,
+            atom CB at position 5.604581, 4.341102, -1.323780,
+        and atom OG at position 6.956995, 4.743407, -1.095126.
+
+/opt/abcg2/bin/teLeap: Error!
+Could not find angle parameter for atom types: N - CX - c3
+        for atom N at position 3.555375, 3.969649, -0.000003,
+            atom CA at position 4.847915, 4.611271, -0.000004,
+        and atom CB at position 5.604581, 4.341102, -1.323780.
+
+/opt/abcg2/bin/teLeap: Warning!
+There are missing parameters.
+check:  Warnings: 1
+Unit is OK.
+Checking Unit.
+
+/opt/abcg2/bin/teLeap: Warning!
+The unperturbed charge of the unit (-1.000000) is not zero.
+
+/opt/abcg2/bin/teLeap: Note.
+Ignoring the warning from Unit Checking.
+
+Building topology.
+Building atom parameters.
+Building bond parameters.
+
+/opt/abcg2/bin/teLeap: Error!
+Could not find bond parameter for atom types: CX - c3
+        for atom CA at position 4.847915, 4.611271, -0.000004 
+        and atom CB at position 5.604581, 4.341102, -1.323780.
+Building angle parameters.
+
+/opt/abcg2/bin/teLeap: Error!
+Could not find angle parameter for atom types: c3 - CX - C
+        for atom CB at position 5.604581, 4.341102, -1.323780,
+            atom CA at position 4.847915, 4.611271, -0.000004,
+        and atom C at position 4.606054, 6.113327, 0.206505.
+
+/opt/abcg2/bin/teLeap: Error!
+Could not find angle parameter for atom types: H1 - CX - c3
+        for atom HA at position 5.443125, 4.236300, 0.824043,
+            atom CA at position 4.847915, 4.611271, -0.000004,
+        and atom CB at position 5.604581, 4.341102, -1.323780.
+
+/opt/abcg2/bin/teLeap: Error!
+Could not find angle parameter for atom types: CX - c3 - h1
+        for atom CA at position 4.847915, 4.611271, -0.000004,
+            atom CB at position 5.604581, 4.341102, -1.323780,
+        and atom HB2 at position 5.170304, 4.924071, -2.176571.
+
+/opt/abcg2/bin/teLeap: Error!
+Could not find angle parameter for atom types: CX - c3 - h1
+        for atom CA at position 4.847915, 4.611271, -0.000004,
+            atom CB at position 5.604581, 4.341102, -1.323780,
+        and atom HB3 at position 5.594767, 3.246208, -1.567618.
+
+/opt/abcg2/bin/teLeap: Error!
+Could not find angle parameter for atom types: CX - c3 - os
+        for atom CA at position 4.847915, 4.611271, -0.000004,
+            atom CB at position 5.604581, 4.341102, -1.323780,
+        and atom OG at position 6.956995, 4.743407, -1.095126.
+
+/opt/abcg2/bin/teLeap: Error!
+Could not find angle parameter for atom types: N - CX - c3
+        for atom N at position 3.555375, 3.969649, -0.000003,
+            atom CA at position 4.847915, 4.611271, -0.000004,
+        and atom CB at position 5.604581, 4.341102, -1.323780.
+Building proper torsion parameters.
+
+/opt/abcg2/bin/teLeap: Error!
+ ** No torsion terms for atom types: os-c3-CX-C
+        for atom OG at position 6.956995, 4.743407, -1.095126,
+            atom CB at position 5.604581, 4.341102, -1.323780,
+            atom CA at position 4.847915, 4.611271, -0.000004,
+        and atom C at position 4.606054, 6.113327, 0.206505.
+
+/opt/abcg2/bin/teLeap: Error!
+ ** No torsion terms for atom types: h1-c3-CX-C
+        for atom HB3 at position 5.594767, 3.246208, -1.567618,
+            atom CB at position 5.604581, 4.341102, -1.323780,
+            atom CA at position 4.847915, 4.611271, -0.000004,
+        and atom C at position 4.606054, 6.113327, 0.206505.
+
+/opt/abcg2/bin/teLeap: Error!
+ ** No torsion terms for atom types: h1-c3-CX-C
+        for atom HB2 at position 5.170304, 4.924071, -2.176571,
+            atom CB at position 5.604581, 4.341102, -1.323780,
+            atom CA at position 4.847915, 4.611271, -0.000004,
+        and atom C at position 4.606054, 6.113327, 0.206505.
+
+/opt/abcg2/bin/teLeap: Error!
+ ** No torsion terms for atom types: H1-CX-c3-h1
+        for atom HA at position 5.443125, 4.236300, 0.824043,
+            atom CA at position 4.847915, 4.611271, -0.000004,
+            atom CB at position 5.604581, 4.341102, -1.323780,
+        and atom HB2 at position 5.170304, 4.924071, -2.176571.
+
+/opt/abcg2/bin/teLeap: Error!
+ ** No torsion terms for atom types: H1-CX-c3-h1
+        for atom HA at position 5.443125, 4.236300, 0.824043,
+            atom CA at position 4.847915, 4.611271, -0.000004,
+            atom CB at position 5.604581, 4.341102, -1.323780,
+        and atom HB3 at position 5.594767, 3.246208, -1.567618.
+
+/opt/abcg2/bin/teLeap: Error!
+ ** No torsion terms for atom types: H1-CX-c3-os
+        for atom HA at position 5.443125, 4.236300, 0.824043,
+            atom CA at position 4.847915, 4.611271, -0.000004,
+            atom CB at position 5.604581, 4.341102, -1.323780,
+        and atom OG at position 6.956995, 4.743407, -1.095126.
+
+/opt/abcg2/bin/teLeap: Error!
+ ** No torsion terms for atom types: N-CX-c3-h1
+        for atom N at position 3.555375, 3.969649, -0.000003,
+            atom CA at position 4.847915, 4.611271, -0.000004,
+            atom CB at position 5.604581, 4.341102, -1.323780,
+        and atom HB2 at position 5.170304, 4.924071, -2.176571.
+
+/opt/abcg2/bin/teLeap: Error!
+ ** No torsion terms for atom types: N-CX-c3-h1
+        for atom N at position 3.555375, 3.969649, -0.000003,
+            atom CA at position 4.847915, 4.611271, -0.000004,
+            atom CB at position 5.604581, 4.341102, -1.323780,
+        and atom HB3 at position 5.594767, 3.246208, -1.567618.
+
+/opt/abcg2/bin/teLeap: Error!
+ ** No torsion terms for atom types: N-CX-c3-os
+        for atom N at position 3.555375, 3.969649, -0.000003,
+            atom CA at position 4.847915, 4.611271, -0.000004,
+            atom CB at position 5.604581, 4.341102, -1.323780,
+        and atom OG at position 6.956995, 4.743407, -1.095126.
+Building improper torsion parameters.
+ total 12 improper torsions applied
+Building H-Bond parameters.
+Incorporating Non-Bonded adjustments.
+
+/opt/abcg2/bin/teLeap: Warning!
+Parameter file was not saved.
+Writing pdb file: SXM_pep.pdb
+	Quit
+
+Exiting LEaP: Errors = 30; Warnings = 6; Notes = 1.
