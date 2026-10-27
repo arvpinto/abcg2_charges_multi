@@ -1,0 +1,22 @@
+Molecule CNC(=O)[C@H](COC(=O)c1ccc(C(=O)[O-])cc1)NC(C)=O: 37 atoms, net charge -1, residue SXM
+Output: SXM_full_am1
+Caps: ACE CAY HY1 HY2 HY3 CY OY; NME NT HNT CAT HT1 HT2 HT3
+Backbone: N N, H H, CA CA, HA HA, C C, O O
+Input backbone: phi -153.1, psi 176.5, omega(ACE) 170.6, omega(NME) 177.1 deg
+Fixed charges: 12 atoms (caps); 25 free atoms; redistribution even
+Pool: caps and backbone fixed (18 frozen atoms)
+Contacts inside the frozen part (not counted): 0 H-bond, 1 N/O, 0 ionic
+Input geometry: Rg 4.06 A, issues: H-bond NT-HNT...OG 2.15 A
+  NOTE: the input (bound pose) is still used as the reference conformer.
+Building the pool: 500 ETKDGv3 conformers, mmff94s (eps = 4.0) ...
+Pool: 15 embedded, 5 pass the filters after duplicate removal
+WARNING: fewer pool conformers than --min-confs; raise -n or relax the filters.
+Running abcg2 with 2 worker(s); stop when N >= 20, max SEM <= 0.001 e and max drift over 5 <= 0.0005 e
+AM1 geometry: full
+  reference: done in 32 s; after AM1 phi -112.0, psi 164.3, Rg 4.11 A, issues: 1 H-bond
+  c001: rejected after AM1 (1 H-bond; backbone moved (dphi 29, dpsi 124 deg))
+  c002: rejected after AM1 (2 H-bond; backbone moved (dphi 64, dpsi 113 deg))
+  c003: rejected after AM1 (1 H-bond; backbone moved (dphi 62, dpsi 109 deg))
+  c004: rejected after AM1 (1 H-bond; backbone moved (dphi 30, dpsi 126 deg))
+  c005: rejected after AM1 (1 H-bond)
+ERROR: no conformer was accepted.
