@@ -2,9 +2,15 @@
 """
 abcg2_analysis.py
 
-Analysis of one or more output directories of abcg2_conformer_charges.py.
+Analysis of one or more output directories of abcg2_conformer_charges.py
+or abcg2_covalent_charges.py.
 
     python3 abcg2_analysis.py EZ60_abcg2 EZ61_abcg2
+
+For covalent runs the atoms with fixed charges (the caps) are left out of
+the charge plot and of the choice of the most variable atoms (--fixed show
+puts them back in the plot), and the report adds the cap charges, the
+redistribution and the residue charge.
 
 Figures (saved at --dpi, 600 by default, and shown on screen unless
 --no-show or no display is available):
@@ -46,6 +52,21 @@ def read_csv(path):
         return list(csv.DictReader(fh))
 
 
+def read_running(path):
+    """The running-mean table: the first three columns are N, max_sem and
+    max_drift, the others are atoms (read by position, since an atom can
+    itself be called N)."""
+    with open(path) as fh:
+        rows = list(csv.reader(fh))
+    head, out = rows[0], []
+    for r in rows[1:]:
+        d = {name: v for name, v in zip(head[3:], r[3:])}
+        d.update(N=r[0], max_sem=r[1], max_drift=r[2])
+        d["_atoms"] = {name: v for name, v in zip(head[3:], r[3:])}
+        out.append(d)
+    return out
+
+
 def load_run(d):
     js = [f for f in os.listdir(d) if f.endswith("_summary.json")]
     if not js:
@@ -56,7 +77,7 @@ def load_run(d):
         summary = json.load(fh)
     run = {"dir": d, "prefix": prefix, "summary": summary,
            "atoms": read_csv(os.path.join(d, f"{prefix}_charges_summary.csv")),
-           "running": read_csv(os.path.join(d, f"{prefix}_running_mean.csv")),
+           "running": read_running(os.path.join(d, f"{prefix}_running_mean.csv")),
            "runs": read_csv(os.path.join(d, f"{prefix}_conformer_runs.csv")),
            "pool": read_csv(os.path.join(d, f"{prefix}_pool.csv"))}
     per = read_csv(os.path.join(d, f"{prefix}_charges_per_conformer.csv"))
@@ -91,10 +112,17 @@ def element(name):
     return letters[:1].upper()
 
 
-def unique_atoms(run, hydrogens):
+def is_fixed(r):
+    """Atoms whose final charge was set, not computed (caps of a covalent run)."""
+    return r.get("fixed") == "1"
+
+
+def unique_atoms(run, hydrogens, fixed="hide"):
     seen, out = set(), []
     for r in run["atoms"]:
         if r["sym_class"] in seen:
+            continue
+        if fixed == "hide" and is_fixed(r):
             continue
         seen.add(r["sym_class"])
         if element(r["atom"]) == "H":
@@ -107,7 +135,7 @@ def unique_atoms(run, hydrogens):
 
 
 def most_variable(run, k):
-    rows = unique_atoms(run, "all")
+    rows = unique_atoms(run, "all", "hide")
     rows.sort(key=lambda r: -fnum(r["std"]))
     return [r["atom"] for r in rows[:k]]
 
@@ -198,9 +226,9 @@ def fig_running(runs, labels, atoms_opt, plt):
         atoms = (atoms_opt or most_variable(run, 4))[:4]
         N = np.array([int(r["N"]) for r in run["running"]])
         for k, a in enumerate(atoms):
-            if a not in run["running"][0]:
+            if a not in run["running"][0]["_atoms"]:
                 continue
-            y = np.array([fnum(r[a]) for r in run["running"]])
+            y = np.array([fnum(r["_atoms"][a]) for r in run["running"]])
             ax.plot(N, 1e3 * (y - y[-1]), color=SERIES[k], label=a, lw=1.4)
         ax.axhline(0, color=TEXT_2, lw=0.8)
         ax.set_xlabel("Accepted conformers, N")
@@ -210,12 +238,12 @@ def fig_running(runs, labels, atoms_opt, plt):
     return fig
 
 
-def fig_charges(runs, labels, comps, hydrogens, plt):
+def fig_charges(runs, labels, comps, hydrogens, fixed, plt):
     n = len(runs)
     fig, axes = plt.subplots(n, 1, figsize=(7.0, 2.8 * n),
                              constrained_layout=True, squeeze=False)
     for ax, run, lab, (cq, clab) in zip(axes[:, 0], runs, labels, comps):
-        rows = unique_atoms(run, hydrogens)
+        rows = unique_atoms(run, hydrogens, fixed)
         x = np.arange(len(rows))
         std = 1e3 * np.array([fnum(r["std"]) for r in rows])
         sem = 1e3 * np.array([fnum(r["sem"]) for r in rows])
@@ -240,8 +268,10 @@ def fig_charges(runs, labels, comps, hydrogens, plt):
         ax.set_xticklabels([f"{r['atom']}\n{fnum(r['q_final']):+.3f}" for r in rows],
                            fontsize=6.5)
         ax.set_ylabel("q - q(ensemble) (me)")
+        note = ", fixed atoms not shown" if fixed == "hide" and \
+            any(is_fixed(r) for r in run["atoms"]) else ""
         ax.set_title(f"{lab}: charges relative to the ensemble mean "
-                     f"(tick labels: final charge, e)", loc="left")
+                     f"(tick labels: final charge, e{note})", loc="left")
         ax.legend(loc="upper left", ncol=2, bbox_to_anchor=(0, -0.22))
         ax.grid(axis="x", visible=False)
     return fig
@@ -319,9 +349,28 @@ def report(runs, labels, comps, fig_files, path):
               f"{s['max_std']:.4f} e ({s['max_std_atom']})"]
         if s.get("tleap"):
             L.append(f"- tleap check: {s['tleap']}")
+        cov = s.get("covalent")
+        if cov:
+            L += [f"- Covalent residue: caps ACE ({', '.join(cov['ace'])}) and NME "
+                  f"({', '.join(cov['nme'])}); backbone {cov['backbone_sampling']} "
+                  f"in the pool; AM1 geometry {st.get('am1_opt', '?')}",
+                  f"- ABCG2 charge of the caps: ACE {cov['ace_abcg2_sum']:+.4f} e, "
+                  f"NME {cov['nme_abcg2_sum']:+.4f} e; fixed to "
+                  f"{cov['ace_fixed_sum']:+.4f} and {cov['nme_fixed_sum']:+.4f} e; "
+                  f"{len(cov['fixed'])} fixed atoms, redistribution "
+                  f"{cov['redistribute']}"
+                  + (f" ({cov['shift_per_free_atom']:+.5f} e per free atom)"
+                     if cov['redistribute'] == "even" else ""),
+                  f"- Residue {s['resname']} without caps: "
+                  f"{len(cov['residue_atoms'])} atoms, charge "
+                  f"{cov['residue_charge']:+.6f} e ({cov['residue_mol2']})"]
+            if cov.get("tleap_first_pass"):
+                L.append(f"- tleap ACE-{s['resname']}-NME before the junction "
+                         f"parameters: {cov['tleap_first_pass']['missing']} missing "
+                         f"terms; junction frcmod: {cov.get('junction_frcmod') or 'none'}")
         L.append("")
 
-        rows = unique_atoms(run, "all")
+        rows = unique_atoms(run, "all", "show")
         final = {r["atom"]: fnum(r["q_final"]) for r in run["atoms"]}
         ref = {r["atom"]: fnum(r.get("q_reference")) for r in run["atoms"]}
         allq = np.array([final[a] for a in final])
@@ -339,6 +388,9 @@ def report(runs, labels, comps, fig_files, path):
                 k = int(np.abs(d).argmax())
                 L.append(f"Ensemble vs {clab}: max |diff| {abs(d[k]):.4f} e "
                          f"({list(final)[k]}), RMS {math.sqrt((d ** 2).mean()):.4f} e")
+        if any(is_fixed(r) for r in rows):
+            L += ["", "For fixed atoms the final charge was set, not computed; their "
+                  "SD, SEM and 95% CI describe the ABCG2 charges of the conformers."]
         L += ["", "| atom (equivalents) | type | final q (e) | SD | SEM | 95% CI | "
               "reference | " + (f"{clab} |" if cq else "") + " r(q, Rg) |",
               "|---|---|---|---|---|---|---|" + ("---|" if cq else "") + "---|"]
@@ -348,7 +400,8 @@ def report(runs, labels, comps, fig_files, path):
             counts[r["sym_class"]] = counts.get(r["sym_class"], 0) + 1
         for r in rows:
             a = r["atom"]
-            line = (f"| {a} ({counts[r['sym_class']]}) | {r['type']} | "
+            tag = ", fixed" if is_fixed(r) else ""
+            line = (f"| {a} ({counts[r['sym_class']]}{tag}) | {r['type']} | "
                     f"{fnum(r['q_final']):+.4f} | {fnum(r['std']):.4f} | "
                     f"{fnum(r['sem']):.4f} | {fnum(r['ci95_lo']):+.4f} to "
                     f"{fnum(r['ci95_hi']):+.4f} | {fnum(r.get('q_reference')):+.4f} | ")
@@ -357,7 +410,7 @@ def report(runs, labels, comps, fig_files, path):
             line += f"{pearson(desc['Rg (A)'], run['Q'][a]):+.2f} |"
             L.append(line)
         strong = []
-        for r in rows:
+        for r in (r for r in rows if not is_fixed(r)):
             for key, x in desc.items():
                 rr = pearson(x, run["Q"][r["atom"]])
                 if np.isfinite(rr) and abs(rr) >= 0.6:
@@ -389,6 +442,9 @@ def main():
                         "(default: the most variable symmetry-unique atoms)")
     p.add_argument("--hydrogens", choices=["none", "polar", "all"], default="polar",
                    help="hydrogens shown in the charge plot")
+    p.add_argument("--fixed", choices=["hide", "show"], default="hide",
+                   help="atoms with fixed charges (caps of abcg2_covalent_charges.py "
+                        "runs) in the charge plot")
     p.add_argument("--dpi", type=int, default=600, help="figure resolution")
     p.add_argument("--format", default="png", help="figure format (png, pdf, svg)")
     p.add_argument("--no-show", action="store_true",
@@ -417,7 +473,7 @@ def main():
     os.makedirs(args.outdir, exist_ok=True)
     figs = {"convergence": fig_convergence(runs, labels, plt),
             "running_mean": fig_running(runs, labels, args.atoms, plt),
-            "charges": fig_charges(runs, labels, comps, args.hydrogens, plt),
+            "charges": fig_charges(runs, labels, comps, args.hydrogens, args.fixed, plt),
             "descriptors": fig_descriptors(runs, labels, args.atoms, plt)}
     files = []
     for name, fig in figs.items():

@@ -1,6 +1,6 @@
 <p align="justify"><b>This tutorial computes ABCG2 partial charges for a flexible small molecule as an average over its conformers, adding one conformer at a time until the per-atom mean is statistically converged. Mono(2-hydroxyethyl) terephthalate (MHET), the product of PET hydrolysis by PETase and the substrate of MHETase, is used as the worked example.</b></p>
 
-<p align="justify">ABCG2 charges, like AM1-BCC, depend on the conformation used to compute them. A single conformer can leave a flexible molecule with charges that reflect one particular geometry, for example an internal hydrogen bond or two polar groups folded onto each other. The scripts in this repository build a filtered pool of conformers, charge them with antechamber, follow the running mean of every atom, and write the averaged charges as a mol2 file with GAFF2 types, a frcmod file and an Amber library. A second script turns the output into figures and a report.</p>
+<p align="justify">ABCG2 charges, like AM1-BCC, depend on the conformation used to compute them. A single conformer can leave a flexible molecule with charges that reflect one particular geometry, for example an internal hydrogen bond or two polar groups folded onto each other. The scripts in this repository build a filtered pool of conformers, charge them with antechamber, follow the running mean of every atom, and write the averaged charges as a mol2 file with GAFF2 types, a frcmod file and an Amber library. A second script turns the output into figures and a report. The <a href="covalent_ligand.html">second page</a> of the tutorial does the same for a ligand covalently bound to a protein residue, using the acyl-enzyme that MHETase forms from MHET as the example.</p>
 
 <p align="justify">It requires <a href="https://ambermd.org/AmberTools.php" target="_blank">AmberTools</a> with ABCG2 support (antechamber, sqm and parmchk2; tleap is optional), Python 3.8 or newer, <a href="https://www.rdkit.org/" target="_blank">RDKit</a>, NumPy and, for the analysis, Matplotlib. The example was run with AmberTools 25 and RDKit 2026.03 from conda-forge:</p>
 
@@ -12,6 +12,7 @@ conda activate abcg2
 | File | Description |
 | :--- | :--- |
 | <a href="abcg2_conformer_charges.py">abcg2_conformer_charges.py</a> | Builds the conformer pool, runs antechamber on each conformer and writes the averaged charges |
+| <a href="abcg2_covalent_charges.py">abcg2_covalent_charges.py</a> | The same for a ligand covalently bound to a residue, computed on the capped residue with fixed cap charges (<a href="covalent_ligand.html">page 2</a>) |
 | <a href="abcg2_analysis.py">abcg2_analysis.py</a> | Figures (600 dpi) and a Markdown report from one or more output directories |
 | <a href="example/MHET.mol2">example/MHET.mol2</a> | Input structure of MHET (carboxylate form, all hydrogens) |
 | <a href="https://github.com/arvpinto/abcg2_charges_multi/tree/main/example/MHET_abcg2" target="_blank">example/MHET_abcg2/</a> | Complete output of the MHET run shown below |
@@ -163,6 +164,8 @@ saveoff MHT MHET.lib
 </pre>
 
 <p align="justify">tleap/MHET.lib, already written by the script, can be loaded instead with loadoff MHET.lib after the frcmod file.</p>
+
+<p align="justify">When the ligand is covalently bound to the protein, as in the acyl-enzyme that MHETase forms from MHET, the charges have to be derived for the modified residue as a whole; this is covered on the <a href="covalent_ligand.html">next page</a>.</p>
 
 ---
 

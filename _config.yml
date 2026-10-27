@@ -1,5 +1,5 @@
 title: Conformer-averaged ABCG2 charges for flexible molecules
-description: Average ABCG2 partial charges over the conformers of a flexible small molecule until the mean is statistically converged, with mono(2-hydroxyethyl) terephthalate (MHET) as the worked example.
+description: Average ABCG2 partial charges over the conformers of a flexible small molecule until the mean is statistically converged, with mono(2-hydroxyethyl) terephthalate (MHET) as the worked example, and do the same for a ligand covalently bound to an active-site serine.
 author: Alexandre V. Pinto
 lang: en
 image: /assets/img/social.jpg
@@ -16,7 +16,20 @@ hero:
   height: 989
   alt: The accepted conformers of MHET overlaid, with atoms coloured from red (negative) to blue (positive) by their final ABCG2 charge
 
-# A single page, not part of a series: no "sections" list and no previous / next links.
+# Pages of the tutorial, in reading order. They build the "Sections" menu and
+# the Previous / Next links at the bottom of every page.
+sections:
+  - num: "1"
+    title: Flexible molecule (MHET)
+    url: /
+  - num: "2"
+    title: Covalently bound ligand
+    url: /covalent_ligand.html
+
+# The button next to the title starts with the first page.
+primary_action:
+  label: Start reading
+  url: "#content"
 
 # Main site (CompBioChem Tutorials) and this repository.
 home_url: https://arvpinto.github.io/
