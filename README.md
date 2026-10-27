@@ -14,7 +14,6 @@ conda activate abcg2
 | <a href="abcg2_conformer_charges.py">abcg2_conformer_charges.py</a> | Builds the conformer pool, runs antechamber on each conformer and writes the averaged charges |
 | <a href="abcg2_analysis.py">abcg2_analysis.py</a> | Figures (600 dpi) and a Markdown report from one or more output directories |
 | <a href="example/MHET.mol2">example/MHET.mol2</a> | Input structure of MHET (carboxylate form, all hydrogens) |
-| <a href="example/make_mhet_mol2.py">example/make_mhet_mol2.py</a> | Script used to build MHET.mol2 from a SMILES string |
 | <a href="https://github.com/arvpinto/abcg2_conformer_charges/tree/main/example/MHET_abcg2" target="_blank">example/MHET_abcg2/</a> | Complete output of the MHET run shown below |
 | <a href="https://github.com/arvpinto/abcg2_conformer_charges/tree/main/example/MHET_analysis" target="_blank">example/MHET_analysis/</a> | Figures and report from abcg2_analysis.py |
 
@@ -33,11 +32,7 @@ conda activate abcg2
 
 <h2> <p align="center"> <b>II - Preparing the input</b> </p></h2>
 
-<p align="justify">The mol2 file must contain one molecule with all hydrogens in the intended protonation state and unique atom names. At neutral pH the carboxylic acid of MHET is deprotonated, so the example uses the carboxylate (net charge -1) with the hydroxyl and the ester intact. <a href="example/make_mhet_mol2.py">make_mhet_mol2.py</a> builds this structure from a SMILES string, sets the O-C-C-O and C-C-O-C torsions to anti so that the input is fully extended, and writes SYBYL atom types and readable names (the residue name, MHT, can be changed with -rn):</p>
-
-<pre style="color: white; background-color: black;">
-python3 make_mhet_mol2.py -o MHET.mol2
-</pre>
+<p align="justify">The mol2 file must contain one molecule with all hydrogens in the intended protonation state and unique atom names. At neutral pH the carboxylic acid of MHET is deprotonated, so the example uses the carboxylate (net charge -1) with the hydroxyl and the ester intact, in an extended conformation (O-C-C-O and C-C-O-C anti). The residue name in the file, MHT, is kept in the output and can be changed with -rn:</p>
 
 <pre style="color: white; background-color: black;">
 @&lt;TRIPOS&gt;ATOM

@@ -1,0 +1,7 @@
+source leaprc.gaff2
+loadamberparams ../MHET.frcmod
+MHT = loadmol2 ../MHET_abcg2_ensemble.mol2
+charge MHT
+check MHT
+saveoff MHT MHET.lib
+quit
