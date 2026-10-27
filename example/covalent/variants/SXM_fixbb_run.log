@@ -1,0 +1,35 @@
+Molecule CNC(=O)[C@H](COC(=O)c1ccc(C(=O)[O-])cc1)NC(C)=O: 37 atoms, net charge -1, residue SXM
+Output: SXM_fixbb
+Caps: ACE CAY HY1 HY2 HY3 CY OY; NME NT HNT CAT HT1 HT2 HT3
+Backbone: N N, H H, CA CA, HA HA, C C, O O
+Input backbone: phi -153.1, psi 176.5, omega(ACE) 170.6, omega(NME) 177.1 deg
+Fixed charges: 16 atoms (caps + N, H, C, O); 21 free atoms; redistribution even
+Pool: caps and backbone fixed (18 frozen atoms)
+Contacts inside the frozen part (not counted): 0 H-bond, 1 N/O, 0 ionic
+Input geometry: Rg 4.06 A, issues: H-bond NT-HNT...OG 2.15 A
+  NOTE: the input (bound pose) is still used as the reference conformer.
+Building the pool: 500 ETKDGv3 conformers, mmff94s (eps = 4.0) ...
+Pool: 15 embedded, 5 pass the filters after duplicate removal
+WARNING: fewer pool conformers than --min-confs; raise -n or relax the filters.
+Running abcg2 with 2 worker(s); stop when N >= 20, max SEM <= 0.001 e and max drift over 5 <= 0.0005 e; reusing SXM_abcg2
+AM1 geometry: restrained (18 atoms fixed, L-BFGS to RMS gradient <= 0.02 and max <= 0.1 kcal/mol/A)
+  reference: done in 0 s, 177 AM1 steps; after AM1 phi -153.1, psi 176.5, Rg 4.08 A, issues: 1 H-bond
+  c001: N=  1      0 s  max SEM nan  max drift nan  ( 367 AM1 steps, Rg 3.95 A)
+  c002: rejected after AM1 (1 H-bond)
+  c003: N=  2      0 s  max SEM 0.0115  max drift nan  ( 150 AM1 steps, Rg 4.08 A)
+  c004: N=  3      0 s  max SEM 0.0077  max drift nan  ( 614 AM1 steps, Rg 3.95 A)
+  c005: rejected after AM1 (1 H-bond)
+WARNING: not converged; the SEM is reported. Raise -n or --max-confs.
+
+Accepted 3 of 5 runs (2 rejected); converged: False
+Final max SEM 0.0077 e; largest conformational SD 0.0133 e (HA)
+ABCG2 charge of the caps: ACE +0.0053 e, NME +0.0413 e (fixed to +0.0000 and +0.0000 e); shift per free atom -0.00070 e
+Largest |ensemble - reference conformer| 0.0295 e (OG)
+Residue SXM: 25 atoms, charge -1.000000 e
+tleap, ACE-SXM-NME: 12 missing parameters before the junction frcmod; final check: residue charge -1.000000, errors 0, warnings 3, missing parameters 0
+Charges: SXM_fixbb/SXM_abcg2_ensemble.mol2
+Residue: SXM_fixbb/SXM_abcg2_residue.mol2
+frcmod:  SXM_fixbb/SXM.frcmod
+Junction: SXM_fixbb/SXM_junction.frcmod
+Library: SXM_fixbb/tleap/SXM.lib
+Analyse with: python3 abcg2_analysis.py SXM_fixbb
