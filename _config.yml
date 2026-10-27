@@ -20,7 +20,7 @@ hero:
 
 # Main site (CompBioChem Tutorials) and this repository.
 home_url: https://arvpinto.github.io/
-repo_url: https://github.com/arvpinto/abcg2_conformer_charges
+repo_url: https://github.com/arvpinto/abcg2_charges_multi
 
 # The page uses its own layout and stylesheet (no remote theme), matching the main site.
 plugins:

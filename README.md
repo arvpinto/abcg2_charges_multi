@@ -14,8 +14,8 @@ conda activate abcg2
 | <a href="abcg2_conformer_charges.py">abcg2_conformer_charges.py</a> | Builds the conformer pool, runs antechamber on each conformer and writes the averaged charges |
 | <a href="abcg2_analysis.py">abcg2_analysis.py</a> | Figures (600 dpi) and a Markdown report from one or more output directories |
 | <a href="example/MHET.mol2">example/MHET.mol2</a> | Input structure of MHET (carboxylate form, all hydrogens) |
-| <a href="https://github.com/arvpinto/abcg2_conformer_charges/tree/main/example/MHET_abcg2" target="_blank">example/MHET_abcg2/</a> | Complete output of the MHET run shown below |
-| <a href="https://github.com/arvpinto/abcg2_conformer_charges/tree/main/example/MHET_analysis" target="_blank">example/MHET_analysis/</a> | Figures and report from abcg2_analysis.py |
+| <a href="https://github.com/arvpinto/abcg2_charges_multi/tree/main/example/MHET_abcg2" target="_blank">example/MHET_abcg2/</a> | Complete output of the MHET run shown below |
+| <a href="https://github.com/arvpinto/abcg2_charges_multi/tree/main/example/MHET_analysis" target="_blank">example/MHET_analysis/</a> | Figures and report from abcg2_analysis.py |
 
 ---
 

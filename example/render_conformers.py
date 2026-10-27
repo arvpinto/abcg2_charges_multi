@@ -10,6 +10,8 @@ ap.add_argument("--pdb", required=True); ap.add_argument("--summary", required=T
 ap.add_argument("--mol2", required=True, help="for bonds"); ap.add_argument("-o", "--out", required=True)
 ap.add_argument("--dpi", type=int, default=600); ap.add_argument("--elev", type=float, default=18)
 ap.add_argument("--azim", type=float, default=-62)
+ap.add_argument("--transparent", action="store_true", help="transparent background instead of black")
+ap.add_argument("--bond-color", default="#9aa3b2", help="bond colour")
 a = ap.parse_args()
 
 models, cur = [], []
@@ -43,18 +45,19 @@ X = [kabsch(x, ref) for x in X]
 cmap = LinearSegmentedColormap.from_list("q", ["#ff3b3b", "#ff9a8a", "#f2f2f2", "#8fb4ff", "#2f6bff"])
 norm = TwoSlopeNorm(vmin=-0.75, vcenter=0.0, vmax=0.75)
 heavy = [i for i, n in enumerate(names) if not n.startswith("H")]
-fig = plt.figure(figsize=(7.2, 4.0), facecolor="black")
-ax = fig.add_axes([0, 0, 1, 1], projection="3d", facecolor="black", proj_type="ortho")
+bg = "none" if a.transparent else "black"
+fig = plt.figure(figsize=(7.2, 4.0), facecolor=bg)
+ax = fig.add_axes([0, 0, 1, 1], projection="3d", facecolor=bg, proj_type="ortho")
 ax.set_axis_off(); ax.view_init(elev=a.elev, azim=a.azim)
 for k, x in enumerate(X):
     alpha = 1.0 if k == 0 else 0.7
     for i, j in bonds:
-        ax.plot(*zip(x[i], x[j]), color="#9aa3b2", lw=2.2 if k == 0 else 1.4, alpha=alpha * 0.8, solid_capstyle="round")
+        ax.plot(*zip(x[i], x[j]), color=a.bond_color, lw=2.2 if k == 0 else 1.4, alpha=alpha * 0.8, solid_capstyle="round")
     sizes = np.array([90 if n.startswith("H") else 260 for n in names])
     c = [cmap(norm(q[n])) for n in names]
     ax.scatter(x[:, 0], x[:, 1], x[:, 2], s=sizes, c=c, alpha=alpha, edgecolors="black", linewidths=0.4, depthshade=False)
 allx = np.vstack(X); lo, hi = allx.min(0) - 0.9, allx.max(0) + 0.9
 ax.set_xlim(lo[0], hi[0]); ax.set_ylim(lo[1], hi[1]); ax.set_zlim(lo[2], hi[2])
 ax.set_box_aspect(tuple(hi - lo))
-fig.savefig(a.out, dpi=a.dpi, facecolor="black")
+fig.savefig(a.out, dpi=a.dpi, facecolor=bg, transparent=a.transparent)
 print("wrote", a.out, len(X), "conformers")
