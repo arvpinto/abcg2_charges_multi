@@ -6,7 +6,7 @@
 | :--- | :--- |
 | <a href="abcg2_covalent_charges.py">abcg2_covalent_charges.py</a> | Conformer-averaged charges of the capped residue with fixed cap charges, residue mol2, frcmod files and Amber library |
 | <a href="abcg2_analysis.py">abcg2_analysis.py</a> | Figures (600 dpi) and a Markdown report, as on the first page |
-| <a href="example/covalent/SXM_origin.pdb">example/covalent/SXM_origin.pdb</a> | Capped acyl-serine as provided (generic atom names) |
+| <a href="example/covalent/test.pdb">example/covalent/test.pdb</a> | Capped acyl-serine as provided (generic atom names) |
 | <a href="example/covalent/SXM.mol2">example/covalent/SXM.mol2</a> | The same structure with the atom names used here, the input of the script |
 | <a href="https://github.com/arvpinto/abcg2_charges_multi/tree/main/example/covalent/SXM_abcg2" target="_blank">example/covalent/SXM_abcg2/</a> | Complete output of the run shown below |
 | <a href="https://github.com/arvpinto/abcg2_charges_multi/tree/main/example/covalent/SXM_analysis" target="_blank">example/covalent/SXM_analysis/</a> | Figures and report from abcg2_analysis.py |
@@ -25,9 +25,9 @@
 
 <h2> <p align="center"> <b>II - Preparing the input</b> </p></h2>
 
-<p align="justify">SXM_origin.pdb holds the capped acyl-serine with generic atom names (C1, C2, ...). Before anything else the atoms need names that will work in the protein. The backbone of the residue keeps the standard names N, H, CA, HA, C and O, because tleap joins the residue to its neighbours through N and C and the protein PDB file uses these names; the side chain follows serine (CB, HB2, HB3, OG); the terephthaloyl atoms keep the names they have in MHET on the first page, so that the two sets of charges can be compared; and the caps, which are part of the same molecule, get names that do not clash with the residue, here those of the CHARMM ACE and CT3 patches. The residue name, SXM, is arbitrary and can be changed with -rn.</p>
+<p align="justify">test.pdb holds the capped acyl-serine with generic atom names (C1, C2, ...). Before anything else the atoms need names that will work in the protein. The backbone of the residue keeps the standard names N, H, CA, HA, C and O, because tleap joins the residue to its neighbours through N and C and the protein PDB file uses these names; the side chain follows serine (CB, HB2, HB3, OG); the terephthaloyl atoms keep the names they have in MHET on the first page, so that the two sets of charges can be compared; and the caps, which are part of the same molecule, get names that do not clash with the residue, here those of the CHARMM ACE and CT3 patches. The residue name, SXM, is arbitrary and can be changed with -rn.</p>
 
-| Part | SXM_origin.pdb | SXM.mol2 |
+| Part | test.pdb | SXM.mol2 |
 | :--- | :--- | :--- |
 | ACE cap | C6, H5, H6, H7, C4, O3 | CAY, HY1, HY2, HY3, CY, OY |
 | Backbone | N1, H4, C1, H1, C3, O2 | N, H, CA, HA, C, O |
@@ -264,6 +264,7 @@ check enz
 ### Useful Links:
 
 - <a href="./">Conformer-averaged ABCG2 charges for a free molecule (first page)</a>
+- <a href="oligomer_fragments.html">Residue charges of an oligomer from capped fragments (third page)</a>
 - <a href="https://ambermd.org/AmberTools.php" target="_blank">AmberTools</a>
 - <a href="https://www.rdkit.org/docs/" target="_blank">RDKit documentation</a>
 - <a href="https://arvpinto.github.io/GAFF2_dihedral_parameterization/" target="_blank">Parameterization of a dihedral angle with QM (GAFF2)</a>

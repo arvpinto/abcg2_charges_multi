@@ -1,5 +1,5 @@
 title: Conformer-averaged ABCG2 charges for flexible molecules
-description: Average ABCG2 partial charges over the conformers of a flexible small molecule until the mean is statistically converged, with mono(2-hydroxyethyl) terephthalate (MHET) as the worked example, and do the same for a ligand covalently bound to an active-site serine.
+description: Average ABCG2 partial charges over the conformers of a flexible small molecule until the mean is statistically converged, with mono(2-hydroxyethyl) terephthalate (MHET) as the worked example, do the same for a ligand covalently bound to an active-site serine, and build the residues of a PET oligomer from capped fragments.
 author: Alexandre V. Pinto
 lang: en
 image: /assets/img/social.jpg
@@ -25,6 +25,9 @@ sections:
   - num: "2"
     title: Covalently bound ligand
     url: /covalent_ligand.html
+  - num: "3"
+    title: Oligomer from fragments (PET)
+    url: /oligomer_fragments.html
 
 # The button next to the title starts with the first page.
 primary_action:
