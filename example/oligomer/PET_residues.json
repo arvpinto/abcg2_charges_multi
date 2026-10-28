@@ -1,0 +1,11 @@
+{
+  "chain": ["PTB", "PTM", "PTM", "PTM", "PTE"],
+  "residues": {
+    "PTM": {"run": "PET_mid_abcg2", "head": "C1", "tail": "C10", "charge": 0,
+            "mimic": {"CP1": "C10", "HP1": "H101", "OP1": "O3", "CP2": "C9", "OP2": "O4",
+                      "CN1": "C1", "HN1": "H11", "ON1": "O1", "CN2": "C2", "ON2": "O2"}},
+    "PTB": {"run": "PET_end_abcg2", "tail": "C10", "charge": 0,
+            "mimic": {"CN1": "C1", "HN1": "H11", "ON1": "O1", "CN2": "C2", "ON2": "O2"}},
+    "PTE": {"run": "PET_end_abcg2", "template": "PET_endrev.mol2", "head": "C1", "charge": 0}
+  }
+}

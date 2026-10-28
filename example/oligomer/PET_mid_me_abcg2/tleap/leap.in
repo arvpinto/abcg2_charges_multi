@@ -1,0 +1,7 @@
+source leaprc.gaff2
+loadamberparams ../PET_mid_me.frcmod
+MME = loadmol2 ../PET_mid_me_abcg2_ensemble.mol2
+charge MME
+check MME
+saveoff MME PET_mid_me.lib
+quit

@@ -1,0 +1,14 @@
+pool_id,mmff_dE_kcal,rg_A,n_gauche,n_hbond,n_ionic,min_polar_dist_A,amide_ok,stereo_ok,accepted,reason
+0,0.034,3.517,0,0,0,inf,1,1,1,
+1,0.000,3.553,0,0,0,inf,1,1,1,
+2,0.336,3.506,0,0,0,inf,1,1,0,duplicate
+3,0.603,3.506,0,0,0,inf,1,1,1,
+4,0.639,3.490,0,0,0,inf,1,1,1,
+5,0.301,3.530,0,0,0,inf,1,1,0,duplicate
+6,0.603,3.510,0,0,0,inf,1,1,1,
+7,0.301,3.530,0,0,0,inf,1,1,0,duplicate
+8,0.603,3.506,0,0,0,inf,1,1,0,duplicate
+9,0.336,3.506,0,0,0,inf,1,1,0,duplicate
+10,0.639,3.495,0,0,0,inf,1,1,1,
+11,0.639,3.495,0,0,0,inf,1,1,0,duplicate
+12,0.301,3.530,0,0,0,inf,1,1,0,duplicate

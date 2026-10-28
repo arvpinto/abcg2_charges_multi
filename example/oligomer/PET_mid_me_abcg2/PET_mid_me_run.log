@@ -1,0 +1,24 @@
+Molecule CCOC(=O)c1ccc(C(=O)OCC)cc1: 30 atoms, net charge 0, residue MME
+Output: PET_mid_me_abcg2
+Input geometry: Rg 3.52 A, 0 gauche, issues: none
+Reference conformer: input (0 gauche, Rg 3.52 A, issues: none)
+Building the pool: 500 ETKDGv3 conformers, mmff94s (eps = 4.0) ...
+Pool: 13 embedded, 6 pass the filters after duplicate removal
+WARNING: fewer pool conformers than --min-confs; raise -n or relax the filters.
+Running abcg2 with 2 worker(s); stop when N >= 20, max SEM <= 0.001 e and max drift over 5 <= 0.0005 e
+  reference: done in 2 s; after sqm 0 gauche, Rg 3.54 A, issues: none
+  c001: N=  1      8 s  max SEM nan  max drift nan  (0 gauche, Rg 3.51 A)
+  c002: N=  2      4 s  max SEM 0.0130  max drift nan  (0 gauche, Rg 3.54 A)
+  c003: N=  3      9 s  max SEM 0.0087  max drift nan  (0 gauche, Rg 3.53 A)
+  c004: N=  4     18 s  max SEM 0.0065  max drift nan  (0 gauche, Rg 3.51 A)
+  c005: N=  5     15 s  max SEM 0.0052  max drift nan  (0 gauche, Rg 3.52 A)
+  c006: N=  6      3 s  max SEM 0.0055  max drift 0.0087  (0 gauche, Rg 3.57 A)
+WARNING: not converged; the SEM is reported. Raise -n or --max-confs.
+
+Accepted 6 of 6 runs (0 rejected); converged: False
+Final max SEM 0.0055 e; largest conformational SD 0.0134 e (CP1)
+Largest |ensemble - reference conformer| 0.0174 e (CP1)
+tleap check: charge -0.000000, errors 0, warnings 0
+Charges: PET_mid_me_abcg2/PET_mid_me_abcg2_ensemble.mol2
+frcmod:  PET_mid_me_abcg2/PET_mid_me.frcmod
+Analyse with: python3 abcg2_analysis.py PET_mid_me_abcg2
