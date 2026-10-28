@@ -1,0 +1,45 @@
+Molecule CCOC(=O)c1ccc(C(=O)OCCOC(C)=O)cc1: 36 atoms, net charge 0, residue END
+Output: PET_end_abcg2
+Input geometry: Rg 4.54 A, 0 gauche, issues: none
+Reference conformer: input (0 gauche, Rg 4.54 A, issues: none)
+Building the pool: 500 ETKDGv3 conformers, mmff94s (eps = 4.0) ...
+Pool: 126 embedded, 28 pass the filters after duplicate removal
+Running abcg2 with 2 worker(s); stop when N >= 20, max SEM <= 0.001 e and max drift over 5 <= 0.0005 e
+  reference: done in 7 s; after sqm 0 gauche, Rg 4.54 A, issues: none
+  c001: N=  1     39 s  max SEM nan  max drift nan  (1 gauche, Rg 4.25 A)
+  c002: N=  2     35 s  max SEM 0.0120  max drift nan  (1 gauche, Rg 4.17 A)
+  c003: N=  3     41 s  max SEM 0.0078  max drift nan  (1 gauche, Rg 4.25 A)
+  c004: N=  4     35 s  max SEM 0.0067  max drift nan  (1 gauche, Rg 4.35 A)
+  c005: N=  5     36 s  max SEM 0.0058  max drift nan  (0 gauche, Rg 4.54 A)
+  c006: N=  6     34 s  max SEM 0.0048  max drift 0.0088  (1 gauche, Rg 3.99 A)
+  c007: N=  7     64 s  max SEM 0.0047  max drift 0.0104  (0 gauche, Rg 4.55 A)
+  c008: N=  8     43 s  max SEM 0.0044  max drift 0.0048  (0 gauche, Rg 4.50 A)
+  c009: N=  9    142 s  max SEM 0.0042  max drift 0.0039  (1 gauche, Rg 4.26 A)
+  c010: N= 10     43 s  max SEM 0.0039  max drift 0.0026  (1 gauche, Rg 4.24 A)
+  c011: N= 11     22 s  max SEM 0.0038  max drift 0.0024  (1 gauche, Rg 4.18 A)
+  c012: N= 12     59 s  max SEM 0.0036  max drift 0.0028  (1 gauche, Rg 3.97 A)
+  c013: N= 13     32 s  max SEM 0.0034  max drift 0.0035  (1 gauche, Rg 4.19 A)
+  c014: N= 14     40 s  max SEM 0.0033  max drift 0.0057  (1 gauche, Rg 4.03 A)
+  c015: N= 15     74 s  max SEM 0.0033  max drift 0.0032  (1 gauche, Rg 4.35 A)
+  c016: N= 16     70 s  max SEM 0.0031  max drift 0.0017  (1 gauche, Rg 3.89 A)
+  c017: N= 17     64 s  max SEM 0.0030  max drift 0.0011  (1 gauche, Rg 4.06 A)
+  c018: N= 18     39 s  max SEM 0.0029  max drift 0.0011  (1 gauche, Rg 4.21 A)
+  c019: N= 19     40 s  max SEM 0.0028  max drift 0.0006  (0 gauche, Rg 4.47 A)
+  c020: N= 20     61 s  max SEM 0.0027  max drift 0.0006  (1 gauche, Rg 4.26 A)
+  c021: N= 21     60 s  max SEM 0.0027  max drift 0.0005  (0 gauche, Rg 4.57 A)
+  c022: N= 22     32 s  max SEM 0.0026  max drift 0.0010  (1 gauche, Rg 4.33 A)
+  c023: N= 23     38 s  max SEM 0.0026  max drift 0.0009  (0 gauche, Rg 4.50 A)
+  c024: N= 24      6 s  max SEM 0.0025  max drift 0.0021  (0 gauche, Rg 4.64 A)
+  c025: N= 25     40 s  max SEM 0.0025  max drift 0.0011  (0 gauche, Rg 4.50 A)
+  c026: N= 26     48 s  max SEM 0.0024  max drift 0.0008  (0 gauche, Rg 4.53 A)
+  c027: N= 27     39 s  max SEM 0.0024  max drift 0.0013  (1 gauche, Rg 4.26 A)
+  c028: N= 28     32 s  max SEM 0.0023  max drift 0.0014  (1 gauche, Rg 3.89 A)
+WARNING: not converged; the SEM is reported. Raise -n or --max-confs.
+
+Accepted 28 of 28 runs (0 rejected); converged: False
+Final max SEM 0.0023 e; largest conformational SD 0.0122 e (CN1)
+Largest |ensemble - reference conformer| 0.0602 e (ON2)
+tleap check: charge 0.000000, errors 0, warnings 0
+Charges: PET_end_abcg2/PET_end_abcg2_ensemble.mol2
+frcmod:  PET_end_abcg2/PET_end.frcmod
+Analyse with: python3 abcg2_analysis.py PET_end_abcg2

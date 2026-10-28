@@ -1,0 +1,7 @@
+source leaprc.gaff2
+loadamberparams ../PET_end.frcmod
+END = loadmol2 ../PET_end_abcg2_ensemble.mol2
+charge END
+check END
+saveoff END PET_end.lib
+quit
