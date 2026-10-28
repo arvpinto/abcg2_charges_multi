@@ -1,0 +1,13 @@
+Info: acdoctor mode is on: check and diagnose problems in the input file.
+Info: The atom type is set to gaff2; the options available to the -at flag are
+      gaff, gaff2, amber, bcc, abcg2, and sybyl.
+
+-- Check Format for mol2 File --
+   Status: pass
+
+---Judge bond type for Residue 1 with ID of 1 and Name of END ---
+
+---Judge bond type for Residue 2 with ID of 2 and Name of END ---
+
+Running: /opt/abcg2/bin/sqm -O -i sqm.in -o sqm.out
+
