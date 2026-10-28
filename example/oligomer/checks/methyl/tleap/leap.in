@@ -1,0 +1,30 @@
+source leaprc.gaff2
+loadamberparams ../PET_mid_me.frcmod
+loadamberparams ../PET_end.frcmod
+PTM = loadmol2 ../PTM.mol2
+set PTM head PTM.1.C1
+set PTM.1 connect0 PTM.1.C1
+set PTM tail PTM.1.C10
+set PTM.1 connect1 PTM.1.C10
+charge PTM
+check PTM
+PTB = loadmol2 ../PTB.mol2
+set PTB tail PTB.1.C10
+set PTB.1 connect1 PTB.1.C10
+charge PTB
+check PTB
+PTE = loadmol2 ../PTE.mol2
+set PTE head PTE.1.C1
+set PTE.1 connect0 PTE.1.C1
+charge PTE
+check PTE
+saveoff PTM methyl.lib
+saveoff PTB methyl.lib
+saveoff PTE methyl.lib
+chain = sequence { PTB PTM PTM PTM PTE }
+charge chain
+check chain
+saveamberparm chain chain.prmtop chain.inpcrd
+savepdb chain chain.pdb
+savemol2 chain chain.mol2 1
+quit

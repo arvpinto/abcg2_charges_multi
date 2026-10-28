@@ -1,0 +1,234 @@
+-I: Adding /opt/abcg2/dat/leap/prep to search path.
+-I: Adding /opt/abcg2/dat/leap/lib to search path.
+-I: Adding /opt/abcg2/dat/leap/parm to search path.
+-I: Adding /opt/abcg2/dat/leap/cmd to search path.
+-f: Source leap.in.
+
+Welcome to LEaP!
+(no leaprc in search path)
+Sourcing: ./leap.in
+----- Source: /opt/abcg2/dat/leap/cmd/leaprc.gaff2
+----- Source of /opt/abcg2/dat/leap/cmd/leaprc.gaff2 done
+Log file: ./leap.log
+Loading parameters: /opt/abcg2/dat/leap/parm/gaff2.dat
+Reading title:
+AMBER General Force Field for organic molecules (Version 2.2.30, Oct 2025)
+Loading parameters: ../PET_mid.frcmod
+Reading force field modification type file (frcmod)
+Reading title:
+Remark line goes here
+Loading parameters: ../PET_end.frcmod
+Reading force field modification type file (frcmod)
+Reading title:
+Remark line goes here
+Loading Mol2 file: ../PTM.mol2
+Reading MOLECULE named PTM
+Total unperturbed charge:   0.000000
+Total perturbed charge:     0.000000
+Checking 'PTM'....
+Checking parameters for unit 'PTM'.
+Checking for bond parameters.
+Checking for angle parameters.
+Unit is OK.
+Loading Mol2 file: ../PTB.mol2
+Reading MOLECULE named PTB
+Total unperturbed charge:  -0.000000
+Total perturbed charge:    -0.000000
+Checking 'PTB'....
+Checking parameters for unit 'PTB'.
+Checking for bond parameters.
+Checking for angle parameters.
+Unit is OK.
+Loading Mol2 file: ../PTE.mol2
+Reading MOLECULE named PTE
+Total unperturbed charge:  -0.000000
+Total perturbed charge:    -0.000000
+Checking 'PTE'....
+Checking parameters for unit 'PTE'.
+Checking for bond parameters.
+Checking for angle parameters.
+Unit is OK.
+ Creating gauche.lib
+Building topology.
+Building atom parameters.
+Building topology.
+Building atom parameters.
+Building topology.
+Building atom parameters.
+Total unperturbed charge:   0.000000
+Total perturbed charge:     0.000000
+Checking 'chain'....
+Checking parameters for unit 'chain'.
+Checking for bond parameters.
+Checking for angle parameters.
+Unit is OK.
+Checking Unit.
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ total 40 improper torsions applied
+Building H-Bond parameters.
+Incorporating Non-Bonded adjustments.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+  (Residues lacking connect0/connect1 - 
+   these don't have chain types marked:
+
+	res	total affected
+
+	PTB	1
+	PTE	1
+  )
+ (no restraints)
+Writing pdb file: chain.pdb
+Writing mol2 file: chain.mol2
+	Quit
+
+Exiting LEaP: Errors = 0; Warnings = 0; Notes = 0.
+ }
+>> 	{ "sh"   "S" "sp3" }
+>> 	{ "sp"   "S" "sp3" }
+>> 	{ "sq"   "S" "sp3" }
+>> 	{ "ss"   "S" "sp3" }
+>> 	{ "sx"   "S" "sp3" }
+>> 	{ "sy"   "S" "sp3" }
+>> 	{ "p2"   "P" "sp2" }
+>> 	{ "p3"   "P" "sp3" }
+>> 	{ "p4"   "P" "sp3" }
+>> 	{ "p5"   "P" "sp3" }
+>> 	{ "pb"   "P" "sp3" }
+>> 	{ "pc"   "P" "sp3" }
+>> 	{ "pd"   "P" "sp3" }
+>> 	{ "pe"   "P" "sp3" }
+>> 	{ "pf"   "P" "sp3" }
+>> 	{ "px"   "P" "sp3" }
+>> 	{ "py"   "P" "sp3" }
+>> 	{ "f"   "F" "sp3" }
+>> 	{ "cl"  "Cl" "sp3" }
+>> 	{ "br"  "Br" "sp3" }
+>> 	{ "i"   "I"  "sp3" }
+>> }
+>> #
+>> #	Load the general force field parameter set.
+>> #
+>> gaff = loadamberparams gaff2.dat
+Loading parameters: /opt/abcg2/dat/leap/parm/gaff2.dat
+Reading title:
+AMBER General Force Field for organic molecules (Version 2.2.30, Oct 2025)
+(UNKNOWN ATOM TYPE: hb)
+> 
+> loadamberparams ../PET_mid.frcmod
+Loading parameters: ../PET_mid.frcmod
+Reading force field modification type file (frcmod)
+Reading title:
+Remark line goes here
+> loadamberparams ../PET_end.frcmod
+Loading parameters: ../PET_end.frcmod
+Reading force field modification type file (frcmod)
+Reading title:
+Remark line goes here
+> PTM = loadmol2 ../PTM.mol2
+Loading Mol2 file: ../PTM.mol2
+Reading MOLECULE named PTM
+> set PTM head PTM.1.C1
+> set PTM.1 connect0 PTM.1.C1
+> set PTM tail PTM.1.C10
+> set PTM.1 connect1 PTM.1.C10
+> charge PTM
+Total unperturbed charge:   0.000000
+Total perturbed charge:     0.000000
+> check PTM
+Checking 'PTM'....
+Checking parameters for unit 'PTM'.
+Checking for bond parameters.
+Checking for angle parameters.
+Unit is OK.
+> PTB = loadmol2 ../PTB.mol2
+Loading Mol2 file: ../PTB.mol2
+Reading MOLECULE named PTB
+> set PTB tail PTB.1.C10
+> set PTB.1 connect1 PTB.1.C10
+> charge PTB
+Total unperturbed charge:  -0.000000
+Total perturbed charge:    -0.000000
+> check PTB
+Checking 'PTB'....
+Checking parameters for unit 'PTB'.
+Checking for bond parameters.
+Checking for angle parameters.
+Unit is OK.
+> PTE = loadmol2 ../PTE.mol2
+Loading Mol2 file: ../PTE.mol2
+Reading MOLECULE named PTE
+> set PTE head PTE.1.C1
+> set PTE.1 connect0 PTE.1.C1
+> charge PTE
+Total unperturbed charge:  -0.000000
+Total perturbed charge:    -0.000000
+> check PTE
+Checking 'PTE'....
+Checking parameters for unit 'PTE'.
+Checking for bond parameters.
+Checking for angle parameters.
+Unit is OK.
+> saveoff PTM gauche.lib
+ Creating gauche.lib
+Saving PTM.
+Building topology.
+Building atom parameters.
+> saveoff PTB gauche.lib
+Saving PTB.
+Building topology.
+Building atom parameters.
+> saveoff PTE gauche.lib
+Saving PTE.
+Building topology.
+Building atom parameters.
+> chain = sequence { PTB PTM PTM PTM PTE }
+Sequence: PTB
+Sequence: PTM
+Sequence: PTM
+Sequence: PTM
+Sequence: PTE
+> charge chain
+Total unperturbed charge:   0.000000
+Total perturbed charge:     0.000000
+> check chain
+Checking 'chain'....
+Checking parameters for unit 'chain'.
+Checking for bond parameters.
+Checking for angle parameters.
+Unit is OK.
+> saveamberparm chain chain.prmtop chain.inpcrd
+Checking Unit.
+Building topology.
+Building atom parameters.
+Building bond parameters.
+Building angle parameters.
+Building proper torsion parameters.
+Building improper torsion parameters.
+ total 40 improper torsions applied
+Building H-Bond parameters.
+Incorporating Non-Bonded adjustments.
+Not Marking per-residue atom chain types.
+Marking per-residue atom chain types.
+  (Residues lacking connect0/connect1 - 
+   these don't have chain types marked:
+
+	res	total affected
+
+	PTB	1
+	PTE	1
+  )
+ (no restraints)
+> savepdb chain chain.pdb
+Writing pdb file: chain.pdb
+> savemol2 chain chain.mol2 1
+Writing mol2 file: chain.mol2
+> quit
+	Quit
+
+Exiting LEaP: Errors = 0; Warnings = 0; Notes = 0.
