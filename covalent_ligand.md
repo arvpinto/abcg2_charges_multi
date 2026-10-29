@@ -144,7 +144,7 @@ python3 abcg2_analysis.py SXM_abcg2 --labels SXM -o SXM_analysis
     <img src="assets/img/sxm_conformers.webp" alt="The accepted AM1 conformers of the acyl-serine overlaid on the fixed backbone, atoms coloured by their final charge and the caps in grey" width="560">
 </div>
 
-<p align="justify">The accepted conformers overlaid on the fixed backbone (made with <a href="example/render_conformers.py">example/render_conformers.py</a>), with atoms coloured from red (negative) to blue (positive) by their final charge and the caps in grey.</p>
+<p align="justify">The accepted conformers overlaid on the fixed backbone, with atoms coloured from red (negative) to blue (positive) by their final charge and the caps in grey.</p>
 
 <h2> <p align="center"> <b>VI - Results</b> </p></h2>
 
