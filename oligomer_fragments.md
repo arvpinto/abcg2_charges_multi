@@ -1,3 +1,7 @@
+<div align="center">
+    <img src="assets/img/PET5.webp" alt="PET pentamer" width="560">
+</div>
+
 <p align="justify"><b>This page derives conformer-averaged ABCG2 charges for an oligomer from small capped fragments, and assembles them into residues that build the chain. The example is a PET pentamer: five ethylene terephthalate repeat units with ethyl ester ends.</b></p>
 
 <p align="justify">The charges of a whole oligomer could be computed in one piece, but not averaged over its conformers in a useful way: a chain of 118 atoms has an enormous number of conformers, most of them folded in vacuum, and each AM1 minimisation takes minutes. The charges of an ester do not depend on what happens ten bonds away, though, so the chain can be cut into residues, each residue computed in a fragment that contains its real neighbours up to a few bonds, and the fragments averaged over their conformers exactly as on the first page. The residues obtained this way are transferable: the same three residues build a chain of any length, and the whole-chain calculation becomes a check rather than the method. The fragments are run with <a href="abcg2_conformer_charges.py">abcg2_conformer_charges.py</a> and the residues are assembled with <a href="abcg2_fragment_assembly.py">abcg2_fragment_assembly.py</a>, which imports it; the conda environment of the first page is enough.</p>
